@@ -22,7 +22,7 @@ class SiteController extends Controller
             'totalCount' => $query->count(),
         ]);
 
-        $allnews = $query->orderBy('data')
+        $allnews = $query->orderBy('data DESC')
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
@@ -112,5 +112,14 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+	
+	public function actionOnenews()
+    {
+		$query = News::findOne($_GET['id']);
+
+        return $this->render('onenews', [
+            'query' => $query,
+        ]);
     }
 }
