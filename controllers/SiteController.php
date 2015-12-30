@@ -13,6 +13,13 @@ use yii\data\Pagination;
 
 class SiteController extends Controller
 {
+		/*Выводит список всех нововстей
+		Actionindex вызывает News::find(). Данный метод строит запрос к БД и извлекает все данные из таблицы.
+		Чтобы ограничить количество новостей, возвращаемых каждым запросом, запрос разбивается на страницы с помощью объекта Pagination:
+		устанавливает пункты offset и limit для SQL инструкции,чтобы она возвращала только одну страницу данных за раз
+		(в нашем случае максимум 5 строк на страницу).
+		Сортируем новости по дате, самие "свежые" в начале
+		В конце кода actionindex выводит view с именем index, и передаёт в него данные из таблицы новостей вместе c информацией о пагинации*/
 	public function actionIndex()
     {
         $query = News::find();
@@ -109,6 +116,9 @@ class SiteController extends Controller
         return $this->render('about');
     }
 	
+	/*Выводит на экран новость
+		actionOnenews вызывает findOne($_GET['id']). Данный метод строит запрос к БД и извлекает строку с ключем id.
+		В конце кода actionindex выводит view с именем onenews, и передаёт в него данные с запрашиваемой строкой*/
 	public function actionOnenews()
     {
 		$query = News::findOne($_GET['id']);

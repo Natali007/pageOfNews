@@ -9,7 +9,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-onenews">
 	<p class="lead">
-			<h2><?= Html::encode("{$query->name}") ?></h2></br>
+	<!--- actionOnenews передает значение $query, выводим имя новости, дату и полный текст-->
+			<h2><?= Html::encode("{$query->name}") ?></h2></br> 
 			<em><?= $query->data ?></br></em>
 			<?= $query->longertext ?>
 		</p>
